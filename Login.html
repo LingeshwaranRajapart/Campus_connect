@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Connect - ESEC</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a, #312e81);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero {
+      padding: 40px 0 10px 0;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      color: #facc15;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      max-width: 700px;
+      font-size: 1.1rem;
+      color: #e0e7ff;
+      line-height: 1.6;
+      margin-bottom: 3rem;
+    }
+
+    .hero-button {
+      background-color: #facc15;
+      color: #1e293b;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(250, 204, 21, 0.4);
+    }
+
+    .login-box {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.5rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+      background-color: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 500px;
+      border: 3px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 0 20px rgba(250, 204, 21, 0.2);
+    }
+
+    .login-box::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 1.5rem;
+      background: linear-gradient(45deg, #facc15, #60a5fa, #c084fc, #facc15);
+      background-size: 400% 400%;
+      animation: borderGlow 8s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes borderGlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .input-group {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .input-field {
+      width: 100%;
+      color: white;
+      padding: 16px 16px 16px 0;
+      background: transparent;
+      outline: none;
+      border: none;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .input-label {
+      position: absolute;
+      left: 0;
+      top: 16px;
+      color: rgba(255, 255, 255, 0.7);
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .input-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.5);
+      transition: all 0.4s ease;
+    }
+
+    .input-field:focus + .input-label,
+    .input-field:not(:placeholder-shown) + .input-label {
+      top: -14px;
+      font-size: 0.9rem;
+      color: white;
+    }
+
+    .input-field:focus ~ .input-line,
+    .input-field:not(:placeholder-shown) ~ .input-line {
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 2px solid white;
+      border-radius: 0.5rem;
+    }
+
+    .input-field:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      transition: background-color 0.3s ease;
+    }
+
+    .fill-button {
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      transition: background-color 0.3s;
+    }
+
+    .btn-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #facc15;
+      height: var(--fill-height, 0%);
+      transition: height 0.5s ease-out;
+      z-index: 1;
+    }
+
+    .btn-text {
+      position: relative;
+      z-index: 2;
+      transition: color 0.3s;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* 🌟 Feature Cards Section */
+    .features-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      padding: 40px 0;
+      background-color: #0b1e4d;
+      flex-wrap: wrap;
+    }
+
+    .feature-card {
+      width: 150px;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .features-section {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero Banner -->
+  <div class="w-full py-2 bg-yellow-400 text-blue-900 font-semibold text-center text-sm tracking-wide animate-pulse">
+    🚀 Campus Connect: Built by Students, Powered by Innovation, Loved by Faculty!
+  </div>
+
+  <!-- Hero Section -->
+  <main class="hero container">
+    <h1><span>CAMPUS</span> CONNECT</h1>
+    <h2>Empowering Education Through Digital Innovation</h2>
+  </main>
+
+  <!-- Login Section -->
+  <section id="login" class="container">
+    <div class="login-box">
+      <div class="text-center mb-8 text-white">
+        <h2 class="text-3xl font-bold">Sign In</h2>
+        <p class="text-gray-300 mt-3 text-base">Welcome! Please enter your details.</p>
+      </div>
+
+     <form id="loginForm">
+  <!-- Username Field -->
+  <div class="input-group">
+    <input type="text" id="username" name="username" class="input-field" placeholder=" " required />
+    <label for="username" class="input-label">Username</label>
+    <div class="input-line"></div>
+  </div>
+
+  <!-- Password Field -->
+  <div class="input-group">
+    <input type="password" id="password" name="password" class="input-field" placeholder=" " required />
+    <label for="password" class="input-label">Password</label>
+    <div class="input-line"></div>
+  </div>
+
+  <!-- Error Message (optional) -->
+  <p id="errorMessage" class="text-red-400 text-base text-center mt-6 hidden"></p>
+
+  <!-- Sign In Button -->
+  <button id="submitButton" type="submit" class="fill-button w-full font-bold py-3 text-base rounded-lg transition-all duration-300">
+    <div class="btn-fill"></div>
+    <span class="btn-text">Sign In</span>
+  </button>
+</form>
+        <div class="
